@@ -1,0 +1,119 @@
+﻿<Window x:Class="PersonalVault.Desktop.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Personal Vault"
+        Width="760"
+        Height="560"
+        MinWidth="620"
+        MinHeight="480"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource WindowBackgroundBrush}"
+        Foreground="{StaticResource PrimaryTextBrush}"
+        TextOptions.TextFormattingMode="Display">
+    <Window.Resources>
+        <DataTemplate x:Key="LockedTemplate">
+            <Grid>
+                <Border Width="420"
+                        Padding="44"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Background="{StaticResource CardBackgroundBrush}"
+                        BorderBrush="#26334D"
+                        BorderThickness="1"
+                        CornerRadius="20">
+                    <StackPanel>
+                        <Border Width="76"
+                                Height="76"
+                                Margin="0,0,0,24"
+                                HorizontalAlignment="Center"
+                                Background="#102D44"
+                                BorderBrush="{StaticResource AccentBrush}"
+                                BorderThickness="1"
+                                CornerRadius="38">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       FontFamily="Segoe UI Semibold"
+                                       FontSize="13"
+                                       Foreground="{StaticResource AccentBrush}"
+                                       Text="LOCKED" />
+                        </Border>
+
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="30"
+                                   FontWeight="SemiBold"
+                                   Text="Personal Vault" />
+                        <TextBlock Margin="0,10,0,30"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   Text="Your vault starts locked."
+                                   TextAlignment="Center" />
+
+                        <TextBlock Margin="0,0,0,8"
+                                   FontSize="13"
+                                   FontWeight="SemiBold"
+                                   Text="Master password" />
+                        <PasswordBox Height="44"
+                                     Padding="12,9"
+                                     IsEnabled="False"
+                                     ToolTip="Encrypted unlock is implemented in Milestone 2." />
+
+                        <Button Height="44"
+                                Margin="0,16,0,0"
+                                IsDefault="True"
+                                IsEnabled="False"
+                                Background="{StaticResource AccentBrush}"
+                                BorderThickness="0"
+                                Content="Unlock"
+                                FontSize="14"
+                                FontWeight="SemiBold"
+                                Foreground="#07111F" />
+
+                        <TextBlock Margin="0,20,0,0"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{StaticResource SecondaryTextBrush}"
+                                   FontSize="12"
+                                   Text="Milestone 0 shell — no secret data is accepted yet."
+                                   TextAlignment="Center"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Margin="24"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Bottom"
+                           Foreground="{StaticResource SecondaryTextBrush}"
+                           FontSize="12"
+                           Text="{Binding StatusText}" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="UnlockedTemplate">
+            <Grid Margin="32">
+                <StackPanel>
+                    <TextBlock FontSize="28"
+                               FontWeight="SemiBold"
+                               Text="Personal Vault" />
+                    <TextBlock Margin="0,10,0,0"
+                               Foreground="{StaticResource SecondaryTextBrush}"
+                               Text="The unlocked workspace will be implemented after the encrypted local vault." />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <ContentControl Content="{Binding}">
+        <ContentControl.Style>
+            <Style TargetType="ContentControl">
+                <Setter Property="ContentTemplate" Value="{StaticResource LockedTemplate}" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsLocked}" Value="False">
+                        <Setter Property="ContentTemplate" Value="{StaticResource UnlockedTemplate}" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ContentControl.Style>
+    </ContentControl>
+</Window>

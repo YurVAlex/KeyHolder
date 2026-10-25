@@ -1,0 +1,71 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "restore",
+      "type": "process",
+      "command": "dotnet",
+      "args": ["restore", "${workspaceFolder}/PersonalVault.sln"],
+      "problemMatcher": "$msCompile",
+      "group": "build"
+    },
+    {
+      "label": "build",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/PersonalVault.sln",
+        "--configuration",
+        "Debug",
+        "--no-restore"
+      ],
+      "dependsOn": "restore",
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "test",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/PersonalVault.sln",
+        "--configuration",
+        "Debug",
+        "--logger",
+        "console;verbosity=normal"
+      ],
+      "dependsOn": "build",
+      "problemMatcher": "$msCompile",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "ci",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "test",
+        "${workspaceFolder}/PersonalVault.sln",
+        "--configuration",
+        "Release",
+        "--verbosity",
+        "normal"
+      ],
+      "options": {
+        "env": {
+          "CI": "true"
+        }
+      },
+      "problemMatcher": "$msCompile",
+      "group": "test",
+      "detail": "Mirrors the GitHub Actions restore/build/test path using locked packages."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net10.0": {
+      "personalvault.cryptography": {
+        "type": "Project"
+      },
+      "personalvault.domain": {
+        "type": "Project"
+      }
+    }
+  }
+}

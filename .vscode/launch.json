@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PersonalVault.Desktop",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/PersonalVault.Desktop/bin/Debug/net10.0-windows/PersonalVault.Desktop.dll",
+      "cwd": "${workspaceFolder}/src/PersonalVault.Desktop",
+      "console": "internalConsole",
+      "stopAtEntry": false
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "dotnet.defaultSolution": "PersonalVault.sln",
+  "dotnet.unitTests.runSettingsPath": "",
+  "editor.formatOnSave": true,
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  }
+}
